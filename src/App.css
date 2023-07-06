@@ -10,3 +10,20 @@
   background-color:white;
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
 }
+
+#light{
+  background-color: rgba(188, 148, 148, 0.847);
+}
+
+#dark{
+  background-color: rgb(115, 84, 84);
+}
+
+#dark .container{
+  background-color: rgb(225, 64, 64);
+}
+
+
+/* #dark .container{
+  background-color: red;
+} */

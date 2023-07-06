@@ -1,5 +1,6 @@
 import './footer.css'
 
+
 const Footer = ({list,setTypelist}) =>{
     const handleActive =() =>{
         setTypelist(false)
@@ -10,6 +11,8 @@ const Footer = ({list,setTypelist}) =>{
     const handleAll =() =>{
         setTypelist('')
     }
+    
+
     return (
         <div className='footer'>
             <p>{list.length} Item left</p>
@@ -18,7 +21,9 @@ const Footer = ({list,setTypelist}) =>{
                 <button className='but1' onClick={handleActive}>Active </button>
                 <button className='but1' onClick={handleComplete}>Complete </button>
             </div>
-            <p>Complete</p>
+            
+                <button className='but11'>Complete</button>
+            
         </div>
     )
 }

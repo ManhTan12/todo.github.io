@@ -1,5 +1,6 @@
 import "./view.css";
 
+
 const View = ({
   handleCheck,
   handleDelete,
@@ -9,6 +10,8 @@ const View = ({
   const handleEdit = (value) => {
     onEdit(value)
   };
+
+  
 
   return (
     <li key={value.id}>

@@ -4,10 +4,16 @@
     padding-left: 30px;
     padding-right: 30px;
 }
-.but1{
+.but3 .but1{
+    height: 20px;
     margin-left: 10px;
     margin-right: 10px;
 }
+.but11{
+    height: 20px;
+    margin-top: 19px;
+}
+
 .footer{
     
     display: flex;

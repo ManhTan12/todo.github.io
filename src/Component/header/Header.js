@@ -1,9 +1,11 @@
 import "./header.css";
 import { nanoid } from "nanoid";
 import { useState } from "react";
-const Header = ({ onSaveList,select,setSelect, handleSaveEdit, headerRef }) =>{
-  const [value, setValue] = useState("");
 
+const Header = ({ onSaveList,select,setSelect, handleSaveEdit, headerRef}) =>{
+  const [value, setValue] = useState("");
+  
+  
   const handleSave = () => {
     if(select){
       // edit
@@ -26,10 +28,10 @@ const Header = ({ onSaveList,select,setSelect, handleSaveEdit, headerRef }) =>{
     }
   };
 
-  return (
-    <div className="wrapper-header">
-      <div className="icon"></div>
+  
 
+  return (
+    <div className="wrapper-header" >
       <input
         ref={headerRef}
         value={value}
