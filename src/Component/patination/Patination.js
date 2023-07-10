@@ -2,7 +2,7 @@ import "./patination.css";
 import { useState, useEffect } from "react";
 import View from "../view/View";
 
-function Patination({ list }) {
+function Patination({ list, setCurrentList }) {
   const page = 10;
   const numberPage = [];
   const [listsPerPage] = useState(2);
@@ -40,13 +40,17 @@ function Patination({ list }) {
     setArrOfCurrent(tempNumberPage);
   }, [current]);
 
-  const lastList = current * listsPerPage;
-  const firstList = lastList - listsPerPage;
-  const currentLists = list.slice(firstList, lastList);
+  useEffect(() => {
+    const lastList = current * listsPerPage;
+    const firstList = lastList - listsPerPage;
+    const currentLists = list.slice(firstList, lastList);
 
-  const renderedLists = currentLists.map((list, index) => (
-    <li key={index}><View /></li>
-  ));
+    setCurrentList(currentLists);
+  }, [current,list]);
+
+  // const renderedLists = currentLists.map((list, index) => (
+  //   <li key={index}><View value={value}/></li>
+  // ));
 
   return (
     <div className="patination-container">
@@ -75,8 +79,6 @@ function Patination({ list }) {
       >
         Next
       </a>
-
-      <ul>{renderedLists}</ul>
     </div>
   );
 }

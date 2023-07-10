@@ -10,6 +10,7 @@ import { useState, useRef,useContext } from "react";
 function App() {
   const [list, setList] = useState([]);
   const [typelist, setTypelist] = useState("");
+  const [currentList,setCurrentList] = useState([]);
   
   //const [theme, setTheme] = useState("light");
   const headerRef = useRef(null);
@@ -68,7 +69,7 @@ function App() {
             handleSaveEdit={handleSaveEdit}
           />
           <Content
-            list={list}
+            list={currentList}
             setList={setList}
             typelist={typelist}
             handleDelete={handleDelete}
@@ -76,7 +77,7 @@ function App() {
             onEditList={handleEditList}
           />
           <Footer list={list} setList={setList} setTypelist={setTypelist} />
-          <Patination list={list} />
+          <Patination list={list} setCurrentList={setCurrentList}/>
           <button onClick={context1.toggleTheme}>Mode</button>
         </div>
       </div>
