@@ -3,13 +3,14 @@ import "./App.css";
 import Header from "./Component/header/Header";
 import Content from "./Component/content/Content";
 import Footer from "./Component/footer/Footer";
+import Patination from "./Component/patination/Patination";
 import { ThemeContext } from "./Theme/Them";
 import { useState, useRef,useContext } from "react";
 
 function App() {
   const [list, setList] = useState([]);
   const [typelist, setTypelist] = useState("");
-  const [select, setSelect] = useState("");
+  
   //const [theme, setTheme] = useState("light");
   const headerRef = useRef(null);
 
@@ -35,9 +36,9 @@ function App() {
   };
 
   // edit todo
-  const handleEditList = (value) => {
-    headerRef.current.value = value.content;
-    setSelect(value);
+  const handleEditList = (value,select) => {
+    headerRef.current(value.content,select);
+    //setValue(value);
   };
 
   const handleSaveEdit = (item) => {
@@ -50,9 +51,7 @@ function App() {
     setList(newList);
   };
 
-  // const handleTheme =() =>{
-  //   setTheme((curr) =>(curr === "light" ? "dark" :"light"))
-  // }
+  
   const context1=useContext(ThemeContext)
 
   return (
@@ -64,9 +63,8 @@ function App() {
             list={list}
             setList={setList}
             onSaveList={handleSaveList}
-            //editList ={editList}
-            select={select}
-            setSelect={setSelect}
+            // select={select}
+            // setSelect={setSelect}
             handleSaveEdit={handleSaveEdit}
           />
           <Content
@@ -78,6 +76,7 @@ function App() {
             onEditList={handleEditList}
           />
           <Footer list={list} setList={setList} setTypelist={setTypelist} />
+          <Patination list={list} />
           <button onClick={context1.toggleTheme}>Mode</button>
         </div>
       </div>

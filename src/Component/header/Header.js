@@ -2,16 +2,20 @@ import "./header.css";
 import { nanoid } from "nanoid";
 import { useState } from "react";
 
-const Header = ({ onSaveList,select,setSelect, handleSaveEdit, headerRef}) =>{
+const Header = ({ onSaveList,handleSaveEdit, headerRef}) =>{
   const [value, setValue] = useState("");
-  
-  
+  const [select, setSelect] = useState("");
+  headerRef.current = (value,select) =>{
+    setSelect(select)
+    setValue(value)
+  }
   const handleSave = () => {
     if(select){
       // edit
       const newTodo = {
         ...select,
         content: value,
+        
       }
       handleSaveEdit(newTodo);
       setValue('');
@@ -27,9 +31,6 @@ const Header = ({ onSaveList,select,setSelect, handleSaveEdit, headerRef}) =>{
       setValue('');
     }
   };
-
-  
-
   return (
     <div className="wrapper-header" >
       <input
