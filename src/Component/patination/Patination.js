@@ -1,11 +1,11 @@
 import "./patination.css";
 import { useState, useEffect } from "react";
-import View from "../view/View";
+
 
 function Patination({ list, setCurrentList }) {
   const page = 10;
   const numberPage = [];
-  const [listsPerPage] = useState(2);
+  const [listsPerPage] = useState(5);
   for (let i = 1; i <= page; i++) {
     numberPage.push(i);
   }
