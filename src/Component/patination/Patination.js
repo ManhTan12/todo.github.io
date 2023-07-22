@@ -1,15 +1,11 @@
 import "./patination.css";
 import { useState, useEffect } from "react";
 
+  const page = 10;
+  const numberPage = [1,2,3,4,5,6,7,8,9,10];
+  const listsPerPage = 2;
 
 function Patination({ list, setCurrentList }) {
-  const page = 10;
-  const numberPage = [];
-  const [listsPerPage] = useState(5);
-  for (let i = 1; i <= page; i++) {
-    numberPage.push(i);
-  }
-
   const [current, setCurrent] = useState(1);
   const [arrOfCurrent, setArrOfCurrent] = useState([]);
 
@@ -40,24 +36,31 @@ function Patination({ list, setCurrentList }) {
     setArrOfCurrent(tempNumberPage);
   }, [current]);
 
-  useEffect(() => {
-    const lastList = current * listsPerPage;
+  // useEffect(() => {
+  //   const lastList = current * listsPerPage;
+  //   const firstList = lastList - listsPerPage;
+  //   const currentLists = list.slice(firstList, lastList);
+
+  //   setCurrentList(currentLists);
+  // }, [current]);
+
+
+
+  const handleCurrent = (pageNumber)=>{
+    //setCurrent((prev) => (prev === 1 ? prev : prev - 1)); 
+    const lastList = pageNumber * listsPerPage;
     const firstList = lastList - listsPerPage;
     const currentLists = list.slice(firstList, lastList);
-
     setCurrentList(currentLists);
-  }, [current,list]);
-
-  // const renderedLists = currentLists.map((list, index) => (
-  //   <li key={index}><View value={value}/></li>
-  // ));
+    setCurrent(pageNumber);
+  }
 
   return (
     <div className="patination-container">
       <a
         href="!#"
-        className=""
-        onClick={() => setCurrent((prev) => (prev === 1 ? prev : prev - 1))}
+        
+        onClick={() => setCurrent((prev) => (prev === page ? prev : prev - 1))}
       >
         Prve
       </a>
@@ -65,9 +68,9 @@ function Patination({ list, setCurrentList }) {
         return (
           <a
             key={index}
-            onClick={() => setCurrent(page)}
+            onClick={() => handleCurrent(page)}
             href="!#"
-            className={current === page && "active"}
+            className={current === page ? "active" : ""}
           >
             {page}
           </a>
