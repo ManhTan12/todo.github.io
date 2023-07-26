@@ -1,18 +1,17 @@
-import { useDispatch, useSelector } from 'react-redux'
+//import { useDispatch, useSelector } from 'react-redux'
 import './footer.css'
 
 
-const Footer = () =>{
-    const todoLists = useSelector((state) => state.todoLists)
-    const dispatch = useDispatch()
+const Footer = ({todoLists,setType}) =>{
+
     const handleActive =() =>{
-        dispatch({type: 'UPDATE_TYPE_LIST', payload: false})
+        setType(false)
     }
     const handleComplete =() =>{
-        dispatch({type: 'UPDATE_TYPE_LIST', payload: true})
+        setType(true)
     }
     const handleAll =() =>{
-        dispatch({type: 'UPDATE_TYPE_LIST', payload: ''})
+        setType()
     }
     
 

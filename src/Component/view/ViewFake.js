@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./view.css";
+import { ACTION_TYPE } from "../../redux/reducer";
 
-const ViewFake = ({ value }) => {
-  const todoLists = useSelector((state) => state.todoLists);
-  
-  const dispatch = useDispatch()
+
+const ViewFake = ({ value, deleteTodo, todoLists }) => {
   const handleCheck = (id) => {
     const newList = [...todoLists];
     const index = newList.findIndex((value) => value.id === id);
@@ -12,19 +11,15 @@ const ViewFake = ({ value }) => {
       ...newList[index],
       isComplete: !newList[index].isComplete,
     };
-    dispatch({type: 'SET_TODO', payload: newList})
-    
-    // setCurrentList(newList)
   };
 
-  const handleDelete =(id) =>{
+  const handleDelete = (id) => {
     const newList = todoLists.filter((todo) => todo.id !== id);
-    dispatch({type: 'DELETE_TODO', payload: newList})
-  }
+    deleteTodo(newList);
+  };
   
-
   return (
-    <li  >
+    <li>
       <div className="content-li">
         <input
           className="checkbox"
@@ -35,14 +30,14 @@ const ViewFake = ({ value }) => {
         <div className={value.isComplete ? "completed" : ""}>
           {value.content}
         </div>
-        <button className="contain-but" >
-          Sửa
-        </button>
-        <button className="contain-but" onChange={() => handleDelete(value.id)}>
+        <button className="contain-but">Sửa</button>
+        <button className="contain-but" onClick={() => handleDelete(value.id)}>
           Xoá
-        </button>
+        </button>       
       </div>
+      
     </li>
+    
   );
 };
 export default ViewFake;

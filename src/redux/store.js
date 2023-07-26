@@ -1,9 +1,6 @@
 // // import { combineReducers, createStore } from "redux";
 // import rootReducer from "./reducer";
 
-
-
-
 // // const reducer = combineReducers({
 // //   rootReducer
 // // })
@@ -19,7 +16,7 @@
 // export default store;
 
 
-// src/redux/store.js
+
 
 import { createStore } from "redux";
 import todoReducer from "./reducer";

@@ -1,9 +1,9 @@
 //import logo from './logo.svg';
 import "./App.css";
-import Header from "./Component/header/Header";
-import Content from "./Component/content/Content";
-import Footer from "./Component/footer/Footer";
-import Patination from "./Component/patination/Patination";
+import HeaderContainer from "./Component/header/HeaderContainer";
+import ContentContainer from "./Component/content/ContentContainer";
+import FooterContainer from "./Component/footer/FooterContainer";
+import PageContainer from "./Component/Page/PageContainer";
 import { ThemeContext } from "./Theme/Them";
 import { useState, useRef,useContext } from "react";
 
@@ -12,20 +12,15 @@ function App() {
   const [list, setList] = useState([]);
   const [typelist, setTypelist] = useState("");
   const [currentList,setCurrentList] = useState([]);
-  
-  //const [theme, setTheme] = useState("light");
   const headerRef = useRef(null);
 
-  // const handleDelete = (index) => {
-  //   //debugger;
-  //   let newList = [...list];
-  //   newList.splice(index, 1);
-  //   setList(newList);
+  const [currentPage, setCurrentPage] = useState(1);
+  const listsPerPage = 2;
 
-  //   let newCurrent =[...currentList];
-  //   newCurrent.splice(index,1);
-  //   setCurrentList(newList);
-  // };
+  const indexOfLastTask = currentPage * listsPerPage;
+  const indexOfFirstTask = indexOfLastTask - listsPerPage;
+  const currentTasks = list.slice(indexOfFirstTask, indexOfLastTask);
+  
 
   const handleCheck = (id) => {
     const newList = [...list];
@@ -67,27 +62,26 @@ function App() {
     
       <div className="body" id={context1.theme}>
         <div className="container">
-          <Header
+          <HeaderContainer
             headerRef={headerRef}
-            list={list}
-            setList={setList}
-            //onSaveList={handleSaveList}
-            // select={select}
-            // setSelect={setSelect}
-            handleSaveEdit={handleSaveEdit}
+            // list={list}
+            // setList={setList}
+            // //onSaveList={handleSaveList}
+            
+            // handleSaveEdit={handleSaveEdit}
            
           />
-          <Content
-            list={currentList}
+          <ContentContainer
+            //list={currentList}
             //list={list}
             setList={setList}
             typelist={typelist}
-            // 
+            list ={currentTasks}
             handleCheck={handleCheck}
             onEditList={handleEditList}
           />
-          <Footer list={list} setList={setList} setTypelist={setTypelist} />
-          <Patination list={list} setCurrentList={setCurrentList}/>
+          <FooterContainer list={list} setList={setList} setTypelist={setTypelist} />
+          <PageContainer setCurrentPage ={setCurrentPage} listsPerPage = {listsPerPage}/>
           <button onClick={context1.toggleTheme}>Mode</button>
         </div>
       </div>

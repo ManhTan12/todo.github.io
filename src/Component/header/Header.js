@@ -1,13 +1,9 @@
 import "./header.css";
 import { nanoid } from "nanoid";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 
-const Header = ({ onSaveList,handleSaveEdit, headerRef}) =>{
+const Header = ({ headerRef,addTodo,editTodo}) =>{
   //redux
-
-  const dispatch = useDispatch();
-
   const [value,setValue] = useState('')
   const [select, setSelect] = useState("");
   headerRef.current = (value) =>{
@@ -15,7 +11,6 @@ const Header = ({ onSaveList,handleSaveEdit, headerRef}) =>{
     setValue(value.content)
   }
   const handleSave = () => {
-    // debugger;
     if(select){
       // edit
       const newTodo = {
@@ -23,7 +18,7 @@ const Header = ({ onSaveList,handleSaveEdit, headerRef}) =>{
         content: value,   
       }
       
-      handleSaveEdit(newTodo);
+      editTodo(newTodo)
       setValue('');
       setSelect('');
     }else{
@@ -34,20 +29,12 @@ const Header = ({ onSaveList,handleSaveEdit, headerRef}) =>{
         content: value,
         isComplete: false,
       }
-      onSaveList(newTodo);
+      addTodo(newTodo)
       setValue('');
       setSelect('')
     }
   };
-  const handleAdd = () => {
-    const newTodo = {
-      id: nanoid(),
-      content: value,
-      isComplete: false,
-    }
-    dispatch({ type: 'ADD_TODO', payload: newTodo });
-    setValue('');
-  }
+
   return (
     <div className="wrapper-header" >
       <input
@@ -61,7 +48,7 @@ const Header = ({ onSaveList,handleSaveEdit, headerRef}) =>{
         // onClick={() =>
         //   handleSave({ id: nanoid(), content: value, isComplete: false })
         // }
-        onClick={handleAdd}
+        onClick={handleSave}
       >
         Save
       </button>
