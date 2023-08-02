@@ -2,10 +2,10 @@ import "./view.css";
 
 const View = ({ handleCheck, handleDelete, value, onEdit }) => {
   const handleEdit = (value) => {
+    console.log('check valye', value);
     onEdit(value);
   };
 
-  
 
   return (
     <li key={value.id} >

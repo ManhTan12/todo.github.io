@@ -1,6 +1,6 @@
 import "./header.css";
 import { nanoid } from "nanoid";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 const Header = ({ headerRef,addTodo,editTodo}) =>{
   //redux
@@ -10,9 +10,14 @@ const Header = ({ headerRef,addTodo,editTodo}) =>{
     setSelect(value)
     setValue(value.content)
   }
+  console.log('select', select);
+  
   const handleSave = () => {
     if(select){
+      console.log('Check', select);
+     // console.log('Check');
       // edit
+      
       const newTodo = {
         ...select,
         content: value,   

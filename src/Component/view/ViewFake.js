@@ -1,16 +1,22 @@
-import { useDispatch, useSelector } from "react-redux";
+
 import "./view.css";
 import { ACTION_TYPE } from "../../redux/reducer";
 
 
-const ViewFake = ({ value, deleteTodo, todoLists }) => {
+const ViewFake = ({ value, deleteTodo, todoLists,setTodo,onEdit }) => {
+  const handleEdit = (value) => {
+    onEdit(value);
+  };
+
   const handleCheck = (id) => {
+    
     const newList = [...todoLists];
     const index = newList.findIndex((value) => value.id === id);
     newList[index] = {
       ...newList[index],
       isComplete: !newList[index].isComplete,
     };
+    setTodo(newList)
   };
 
   const handleDelete = (id) => {
@@ -30,7 +36,7 @@ const ViewFake = ({ value, deleteTodo, todoLists }) => {
         <div className={value.isComplete ? "completed" : ""}>
           {value.content}
         </div>
-        <button className="contain-but">Sửa</button>
+        <button className="contain-but" onClick={() => handleEdit(value)}>Sửa</button>
         <button className="contain-but" onClick={() => handleDelete(value.id)}>
           Xoá
         </button>       

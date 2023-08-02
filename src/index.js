@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { Them } from "./Theme/Them";
 import { Provider } from 'react-redux'
 import store from './redux/store';
+import AppContainer from './AppContainer';
 //import TodoList from './Component/TodoList';
 // import { createStore } from 'redux'
 // import rootReducer from './reducers'
@@ -14,8 +15,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
     <Them>
-      <App />
-      {/* <TodoList /> */}
+      <AppContainer />
     </Them>
   </Provider>
     

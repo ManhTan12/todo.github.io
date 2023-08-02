@@ -1,0 +1,9 @@
+.page{
+    margin: 20px 200px;
+    display: flex;
+}
+
+.page-but{
+    margin-left: 10px;
+    margin-top: 10px;
+}

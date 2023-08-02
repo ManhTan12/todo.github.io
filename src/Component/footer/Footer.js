@@ -2,16 +2,16 @@
 import './footer.css'
 
 
-const Footer = ({todoLists,setType}) =>{
+const Footer = ({todoLists,setTypelist}) =>{
 
     const handleActive =() =>{
-        setType(false)
+        setTypelist(false)
     }
     const handleComplete =() =>{
-        setType(true)
+        setTypelist(true)
     }
     const handleAll =() =>{
-        setType()
+        setTypelist('')
     }
     
 

@@ -13,7 +13,7 @@ function mapDispatchToProps(dispatch){
     return {
         editTodo: (newList) => dispatch({type: ACTION_TYPE.EDIT_TODO, payload: newList}),
         addTodo: (newTodo) => dispatch({type: ACTION_TYPE.ADD_TODO, payload: newTodo}),
-        setTodo: (newList) => dispatch({type: ACTION_TYPE.SET_TODO_TODO, payload: newList}),
+        setTodo: (newList) => dispatch({type: ACTION_TYPE.SET_TODO, payload: newList}),
         deleteTodo: (newList) => dispatch({type: ACTION_TYPE.DELETE_TODO, payload: newList}),
     }
 }
