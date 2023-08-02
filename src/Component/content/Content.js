@@ -1,6 +1,5 @@
-import { useState } from "react"
+import { useState,useEffect,useRef } from "react"
 import "./content.css";
-import { useSelector } from "react-redux";
 import ViewContainer from "../view/ViewContainer";
 
 const Content = ({
@@ -14,14 +13,37 @@ const Content = ({
   const handleEdit = (value) => {
     onEditList(value);
   };
-  
-  
-  // const todoLists = useSelector((state) => state.todoLists);
-  // const typeList = useSelector((state) => state.typeList);
-  //const store = useSelector((state) => state);
+  const [isBottom, setIsBottom] = useState(false);
+  const scrollContainerRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollTop, clientHeight, scrollHeight } = scrollContainerRef.current;
+
+      if (scrollTop + clientHeight >= scrollHeight) {
+        setIsBottom(true);
+      } else {
+        setIsBottom(false);
+      }
+    };
+
+    const handleResize = () => {
+      handleScroll();
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+
   return (
-    <div className="contain">
-      <ul className="contain-ul">
+    <div className="contain" ref={scrollContainerRef} style={{ height: '150px', overflow: 'auto' }}>
+      <ul className="contain-ul" >
         {currentTasks?.map((value) => {
            if (typelist === ''|| value.isComplete === typelist) {
           return (

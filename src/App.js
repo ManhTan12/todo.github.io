@@ -16,7 +16,7 @@ function App({todoLists}) {
   const headerRef = useRef(null);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const listsPerPage = 2;
+  const listsPerPage = 5;
 
   const indexOfLastTask = currentPage * listsPerPage;
   const indexOfFirstTask = indexOfLastTask - listsPerPage;
