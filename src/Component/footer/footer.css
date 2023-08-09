@@ -1,20 +1,9 @@
-
-.but3{
-    margin-top: 15px;
-    padding-left: 30px;
-    padding-right: 30px;
-}
-.but3 .but1{
-    height: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-.but11{
-    height: 20px;
-    margin-top: 19px;
+.but1{
+    margin: 0 10px 0 10px;
 }
 
 .footer{
-    
+    justify-content: center;
+    align-items: center;
     display: flex;
 }

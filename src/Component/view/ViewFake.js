@@ -1,6 +1,6 @@
 
 import "./view.css";
-import { ACTION_TYPE } from "../../redux/reducer";
+// import { ACTION_TYPE } from "../../redux/reducer";
 
 
 const ViewFake = ({ value, deleteTodo, todoLists,setTodo,onEdit }) => {
@@ -9,19 +9,11 @@ const ViewFake = ({ value, deleteTodo, todoLists,setTodo,onEdit }) => {
   };
 
   const handleCheck = (id) => {
-    
-    const newList = [...todoLists];
-    const index = newList.findIndex((value) => value.id === id);
-    newList[index] = {
-      ...newList[index],
-      isComplete: !newList[index].isComplete,
-    };
-    setTodo(newList)
+    setTodo(id)
   };
 
   const handleDelete = (id) => {
-    const newList = todoLists.filter((todo) => todo.id !== id);
-    deleteTodo(newList);
+    deleteTodo(id);
   };
   
   return (

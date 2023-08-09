@@ -2,18 +2,7 @@
 import './footer.css'
 
 
-const Footer = ({todoLists,setTypelist}) =>{
-
-    const handleActive =() =>{
-        setTypelist(false)
-    }
-    const handleComplete =() =>{
-        setTypelist(true)
-    }
-    const handleAll =() =>{
-        setTypelist('')
-    }
-    
+const Footer = ({todoLists,handleActive,handleAll,handleComplete}) =>{
 
     return (
         <div className='footer'>
@@ -22,12 +11,13 @@ const Footer = ({todoLists,setTypelist}) =>{
                 <button className='but1' onClick={handleAll}>All </button>
                 <button className='but1' onClick={handleActive}>Active </button>
                 <button className='but1' onClick={handleComplete}>Complete </button>
+                <button className='but1'>Complete</button>
             </div>
             
-                <button className='but11'>Complete</button>
+                
             
         </div>
     )
 }
 
-export default Footer
+export default Footer;

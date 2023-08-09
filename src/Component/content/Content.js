@@ -8,7 +8,8 @@ const Content = ({
   onEditList,
   todoLists,
   typeList,
-  currentTasks
+  currentTasks,
+  filteredTasks
 }) => {
   const handleEdit = (value) => {
     onEditList(value);
@@ -42,13 +43,11 @@ const Content = ({
 
 
   return (
-    <div className="contain" ref={scrollContainerRef} style={{ height: '150px', overflow: 'auto' }}>
+    <div className="contain" ref={scrollContainerRef} style={{ maxHeight: '150px', overflow: 'auto' }}>
       <ul className="contain-ul" >
-        {currentTasks?.map((value) => {
+        {filteredTasks?.map((value) => {
            if (typelist === ''|| value.isComplete === typelist) {
           return (
-            //   <View value={value}  handleDelete={handleDelete}
-            //  list={list} setList={setList} />
             <ViewContainer handleCheck={handleCheck} onEdit={handleEdit} key={value.id} value={value} />
           );
            }

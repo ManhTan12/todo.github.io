@@ -8,27 +8,42 @@ import PageContainer from "./Component/Page/PageContainer";
 import { ThemeContext } from "./Theme/Them";
 import { useState, useRef,useContext } from "react";
 
-function App({todoLists}) {
-  
-  // const [list, setList] = useState([]);
-   const [typelist, setTypelist] = useState("");
-  // //const [currentList,setCurrentList] = useState([]);
+function App({todoListsSelector, getActive,getComplete}) {
+
+  const [typelist, setTypelist] = useState('All');
   const headerRef = useRef(null);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const listsPerPage = 5;
+  const listsPerPage = 6;
 
   const indexOfLastTask = currentPage * listsPerPage;
   const indexOfFirstTask = indexOfLastTask - listsPerPage;
-  const currentTasks = todoLists.slice(indexOfFirstTask, indexOfLastTask);
+  const currentTasks = todoListsSelector.slice(indexOfFirstTask, indexOfLastTask);
   
-  console.log('indexOfFirstTask', indexOfFirstTask);
-  console.log('indexOfLastTask', indexOfLastTask);
-  console.log('currentTasks', currentTasks);
   // edit todo
   const handleEditList = (value) => {
     headerRef.current(value);
   };
+
+  const handleActive =() =>{
+    setTypelist('Active')
+  }
+  const handleComplete =() =>{
+      setTypelist('Complete')
+  }
+  const handleAll =() =>{
+      setTypelist('All')
+  }
+  let filteredTasks = [];
+  if ( typelist=== 'Active') {
+    filteredTasks = getActive(); // Replace with your actual selectors
+  } else if (typelist === 'Complete') {
+    filteredTasks = getComplete();
+   } // Replace with your actual selectors
+  // } else {
+  //   filteredTasks = todoListsSelector(); // Replace with your actual selectors for "All"
+  // }
+
 
   const context1=useContext(ThemeContext)
 
@@ -40,12 +55,14 @@ function App({todoLists}) {
             headerRef={headerRef}
           />
           <ContentContainer
+            filteredTasks={filteredTasks}
             typelist={typelist}
             currentTasks ={currentTasks}
             onEditList={handleEditList}
+            
           />
-          <FooterContainer setTypelist={setTypelist} />
-          <PageContainer setCurrentPage ={setCurrentPage} listsPerPage = {listsPerPage}/>
+          <FooterContainer setTypelist={setTypelist} handleActive={handleActive} handleComplete={handleComplete} handleAll={handleAll} />
+          <PageContainer setCurrentPage ={setCurrentPage} listsPerPage = {listsPerPage} currentPage={currentPage}/>
           <button onClick={context1.toggleTheme}>Mode</button>
         </div>
       </div>
@@ -55,11 +72,4 @@ function App({todoLists}) {
 
 export default App;
 
-/*luôn luôn chạy
-useEffic(func abc(){
 
-})
-
-
-
-*/
