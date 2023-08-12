@@ -3,7 +3,8 @@ import "./view.css";
 // import { ACTION_TYPE } from "../../redux/reducer";
 
 
-const ViewFake = ({ value, deleteTodo, todoLists,setTodo,onEdit }) => {
+const ViewFake = ({ value, deleteTodo,setTodo,onEdit }) => {
+  
   const handleEdit = (value) => {
     onEdit(value);
   };

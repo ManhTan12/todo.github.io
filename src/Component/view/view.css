@@ -31,15 +31,16 @@ li{
 .content-li {
     display: flex;
     align-items: center;
+    padding-right: 30px;
 }
 .checkbox {
     margin-right: 10px;
-    flex: 1;
+   
 }
 .completed {
     text-decoration: line-through;
     color: #888;
-    flex: 7;
+    
 }
 
 .contain-but {
@@ -50,7 +51,7 @@ li{
     padding: 5px 10px;
     margin-left: 5px;
     cursor: pointer;
-    flex: 1;
+   
 }
 
 .contain-but:hover {

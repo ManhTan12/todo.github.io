@@ -14,33 +14,36 @@ const Header = ({ headerRef, addTodo, editTodo }) => {
   const handleSave = () => {
     if (select) {
       // edit
-      const newTodo = {
-        ...select,
-        content: value,
-      };
-
-      editTodo(newTodo);
-      setValue("");
-      setSelect("");
+      if(value.trim() !== ''){
+        const newTodo = {
+          ...select,
+          content: value,
+        };
+  
+        editTodo(newTodo);
+        setValue("");
+        setSelect("");
+      }
     } else {
       
       // add
-      const newTodo = {
-        ...select,
-        id: nanoid(),
-        content: value,
-        isComplete: false,
-      };
-      addTodo(newTodo);
-      setValue("");
-      setSelect("");
-      debugger;
+      if(value.trim() !== ''){
+        const newTodo = {
+          ...select,
+          id: nanoid(),
+          content: value,
+          isComplete: false,
+        };
+        addTodo(newTodo);
+        setValue("");
+        setSelect("");
+      }
+      
     }
   };
-  console.log("value", value);
+  
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      debugger;
       handleSave();
     }
   };

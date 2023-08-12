@@ -2,20 +2,17 @@
 import './footer.css'
 
 
-const Footer = ({todoLists,handleActive,handleAll,handleComplete}) =>{
-
+const Footer = ({todoLists,handleChange}) =>{
+     
     return (
         <div className='footer'>
             <p>{todoLists.length} Item left</p>
             <div className='but3'>
-                <button className='but1' onClick={handleAll}>All </button>
-                <button className='but1' onClick={handleActive}>Active </button>
-                <button className='but1' onClick={handleComplete}>Complete </button>
+                <button className='but1' onClick={() =>handleChange('all')}>All </button>
+                <button className='but1' onClick={() =>handleChange('active')}>Active </button>
+                <button className='but1' onClick={() =>handleChange('completed')}>Complete </button>
                 <button className='but1'>Complete</button>
             </div>
-            
-                
-            
         </div>
     )
 }

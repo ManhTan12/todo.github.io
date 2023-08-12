@@ -18,8 +18,7 @@ export const ACTION_TYPE={
 
 const todoReducer =(state = todoLists, action) => {
     switch(action.type){
-        case 'ADD_TODO' :
-            debugger;
+        case 'ADD_TODO' :           
             const arr = state;
             return [action.payload,...arr]
         case 'SET_TODO': {
@@ -43,10 +42,6 @@ const todoReducer =(state = todoLists, action) => {
             };
             return newList;
         }
-        case 'GET_COMPLETE_TODO':
-            return action.payload
-        case 'GET_ACTIVE_TODO':
-            return action.payload
         
         default:
             return state;

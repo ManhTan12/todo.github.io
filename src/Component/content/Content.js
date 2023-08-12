@@ -3,13 +3,13 @@ import "./content.css";
 import ViewContainer from "../view/ViewContainer";
 
 const Content = ({
-  typelist,
+ 
   handleCheck,
   onEditList,
   todoLists,
-  typeList,
   currentTasks,
   filteredTasks
+  
 }) => {
   const handleEdit = (value) => {
     onEditList(value);
@@ -43,14 +43,12 @@ const Content = ({
 
 
   return (
-    <div className="contain" ref={scrollContainerRef} style={{ maxHeight: '150px', overflow: 'auto' }}>
+    <div className="contain" ref={scrollContainerRef}>
       <ul className="contain-ul" >
-        {filteredTasks?.map((value) => {
-           if (typelist === ''|| value.isComplete === typelist) {
+        {currentTasks?.map((value) => {
           return (
             <ViewContainer handleCheck={handleCheck} onEdit={handleEdit} key={value.id} value={value} />
-          );
-           }
+          );         
         })}
       </ul>
     </div>
