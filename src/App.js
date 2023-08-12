@@ -14,10 +14,21 @@ function App({ todoLists }) {
   const [currentPage, setCurrentPage] = useState(1);
   const listsPerPage = 6;
 
+  const getAll = () => todoLists;
 
   const getActive =() => todoLists.filter(todo => !todo.isComplete);
   const getCompleted =() => todoLists.filter(todo => todo.isComplete);
-  const filteredTasks = typelist === 'completed' ? getCompleted() : getActive();
+  
+  let filteredTasks;
+
+  if (typelist === 'all') {
+    filteredTasks = getAll();
+  } else if (typelist === 'completed') {
+    filteredTasks = getCompleted();
+  } else if (typelist === 'active') {
+    filteredTasks = getActive();
+  }
+  
 
   const indexOfLastTask = currentPage * listsPerPage;
   const indexOfFirstTask = indexOfLastTask - listsPerPage;
