@@ -1,7 +1,6 @@
 .contain-ul li{
     padding: 16px;
     border-top: 1px solid black;
-    border-bottom: 1px solid black;
     list-style-type: none;
     display: flex;
 }

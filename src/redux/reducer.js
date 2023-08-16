@@ -12,8 +12,7 @@ export const ACTION_TYPE={
     SET_TODO: 'SET_TODO',
     DELETE_TODO: 'DELETE_TODO',
     EDIT_TODO: 'EDIT_TODO',
-    GET_ACTIVE_TODO:'GET_ACTIVE_TODO',
-    GET_COMPLETE_TODO:'GET_COMPLETE_TODO',
+
 }
 
 const todoReducer =(state = todoLists, action) => {
@@ -22,13 +21,20 @@ const todoReducer =(state = todoLists, action) => {
             const arr = state;
             return [action.payload,...arr]
         case 'SET_TODO': {
+            
             const newList = [...state];
             const index = newList.findIndex((value) => value.id === action.payload);
-            newList[index] = {
-                ...newList[index],
-                isComplete: !newList[index].isComplete,
-            };
-            return newList;
+            console.log(index);
+            if(index >= 0){
+                newList[index] = {
+                    ...newList[index],
+                    isComplete: !newList[index].isComplete,
+                };
+                return newList;
+            }else{
+                return newList;
+            }
+            
         }
         case 'DELETE_TODO':
             const newList = [...state];

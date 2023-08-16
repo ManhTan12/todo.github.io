@@ -3,18 +3,19 @@ import "./view.css";
 // import { ACTION_TYPE } from "../../redux/reducer";
 
 
-const ViewFake = ({ value, deleteTodo,setTodo,onEdit }) => {
+const ViewFake = ({ value, deleteTodo,setTodo,onEdit,listUser,deleteList,editLists }) => {
   
   const handleEdit = (value) => {
     onEdit(value);
   };
 
   const handleCheck = (id) => {
-    setTodo(id)
+    setTodo(id);
   };
 
   const handleDelete = (id) => {
     deleteTodo(id);
+    deleteList(id);
   };
   
   return (
@@ -27,12 +28,12 @@ const ViewFake = ({ value, deleteTodo,setTodo,onEdit }) => {
           onChange={() => handleCheck(value.id)}
         />
         <div className={value.isComplete ? "completed" : ""}>
-          {value.content}
+          {value.first_name} {value.last_name}
         </div>
         <button className="contain-but" onClick={() => handleEdit(value)}>Sửa</button>
         <button className="contain-but" onClick={() => handleDelete(value.id)}>
           Xoá
-        </button>       
+        </button>      
       </div>
       
     </li>

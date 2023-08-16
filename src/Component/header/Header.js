@@ -2,7 +2,7 @@ import "./header.css";
 import { nanoid } from "nanoid";
 import { useState, useEffect } from "react";
 
-const Header = ({ headerRef, addTodo, editTodo }) => {
+const Header = ({ headerRef, addTodo, editTodo,addLists }) => {
   //redux
   const [value, setValue] = useState("");
   const [select, setSelect] = useState("");
@@ -19,13 +19,12 @@ const Header = ({ headerRef, addTodo, editTodo }) => {
           ...select,
           content: value,
         };
-  
+        
         editTodo(newTodo);
         setValue("");
         setSelect("");
       }
     } else {
-      
       // add
       if(value.trim() !== ''){
         const newTodo = {
@@ -35,6 +34,7 @@ const Header = ({ headerRef, addTodo, editTodo }) => {
           isComplete: false,
         };
         addTodo(newTodo);
+        addLists(value);
         setValue("");
         setSelect("");
       }
@@ -57,7 +57,7 @@ const Header = ({ headerRef, addTodo, editTodo }) => {
         onKeyDown={handleKeyDown}
         placeholder="Enter work"
       />
-      <button className="header-save" onClick={() => handleSave({ id: nanoid(), content: value, isComplete: false })}>
+      <button className="header-save" onClick={() => handleSave()}>
         Save
       </button>
     </div>

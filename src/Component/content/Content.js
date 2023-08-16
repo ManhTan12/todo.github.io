@@ -2,13 +2,14 @@ import { useState,useEffect,useRef } from "react"
 import "./content.css";
 import ViewContainer from "../view/ViewContainer";
 
+
 const Content = ({
  
   handleCheck,
   onEditList,
-  todoLists,
   currentTasks,
-  filteredTasks
+  deleteList,
+  editLists
   
 }) => {
   const handleEdit = (value) => {
@@ -42,12 +43,14 @@ const Content = ({
   }, []);
 
 
+  
+
   return (
     <div className="contain" ref={scrollContainerRef}>
       <ul className="contain-ul" >
         {currentTasks?.map((value) => {
           return (
-            <ViewContainer handleCheck={handleCheck} onEdit={handleEdit} key={value.id} value={value} />
+            <ViewContainer handleCheck={handleCheck} onEdit={handleEdit} key={value.id} value={value} deleteList={deleteList} editLists={editLists}/>
           );         
         })}
       </ul>
