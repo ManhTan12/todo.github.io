@@ -1,15 +1,18 @@
 import "./header.css";
 import { nanoid } from "nanoid";
-import { useState, useEffect } from "react";
-
-const Header = ({ headerRef, addTodo, editTodo,addLists }) => {
+import { useEffect, useState } from "react";
+import axiosClient from "../../api/axiosClient";
+const Header = ({ headerRef, addTodo, editTodo }) => {
   //redux
   const [value, setValue] = useState("");
   const [select, setSelect] = useState("");
-  headerRef.current = (value) => {
-    setSelect(value);
-    setValue(value.content);
-  };
+  // headerRef.current = (value) => {
+    
+  // };
+  // useEffect(() => {
+  //   setSelect(headerRef.current.value);
+  //   setValue(headerRef.current.value);
+  // }, [headerRef.current.value])
 
   const handleSave = () => {
     if (select) {
@@ -19,7 +22,6 @@ const Header = ({ headerRef, addTodo, editTodo,addLists }) => {
           ...select,
           content: value,
         };
-        
         editTodo(newTodo);
         setValue("");
         setSelect("");
@@ -28,17 +30,25 @@ const Header = ({ headerRef, addTodo, editTodo,addLists }) => {
       // add
       if(value.trim() !== ''){
         const newTodo = {
-          ...select,
-          id: nanoid(),
-          content: value,
+          name: value,
           isComplete: false,
         };
-        addTodo(newTodo);
-        addLists(value);
+
+        axiosClient.post('',newTodo)
+        .then(res =>{
+          let task = {
+            ...newTodo,
+            id: res.id
+          }
+          addTodo(task)
+        })
+        .catch(error =>{
+          console.log('Error',error)
+        })
+        console.log('newTodo', newTodo);
         setValue("");
         setSelect("");
-      }
-      
+      }  
     }
   };
   
@@ -47,6 +57,7 @@ const Header = ({ headerRef, addTodo, editTodo,addLists }) => {
       handleSave();
     }
   };
+  console.log('value value value', value);
 
   return (
     <div className="wrapper-header">

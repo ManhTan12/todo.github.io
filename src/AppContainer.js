@@ -1,7 +1,8 @@
 import {  connect } from "react-redux"
-// import { createSelector } from "reselect";
-//import { ACTION_TYPE } from "../../redux/reducer"
+import axios from "axios";
+import { ACTION_TYPE } from "./redux/reducer";
 import App from "./App"
+import { fetchTodos } from "./redux/api";
 
 function mapStateToProps(state, ownProps){
     return{
@@ -9,24 +10,12 @@ function mapStateToProps(state, ownProps){
     }
 }
 
-// const getToDoList =(state) => state;
-// // const getFilter =(state) => state;
+function mapDispatchToProps(dispatch) {
+    return {
+      fetchTodos: (todos) => dispatch({ type: ACTION_TYPE.FETCH_TODOS_SUCCESS, payload: todos }),
+    };
+  }
 
-// const getActive = createSelector(getToDoList, (state)=> {
-//     debugger;
-//     const activeTodo =state.filter((todo) =>{
-//         return todo.isComplete === true;
-//     });
-//     return activeTodo;
-// });
-
-// const getComplete = createSelector(getToDoList, (state) =>{
-//     const completeTodo =state.filter((todo) =>{
-//         return todo.isComplete === false;
-//     });
-//     return completeTodo;
-// });
-
-const AppContainer = connect(mapStateToProps)(App);
+const AppContainer = connect(mapStateToProps,mapDispatchToProps)(App);
 
 export default AppContainer;

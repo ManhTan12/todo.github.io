@@ -1,33 +1,4 @@
-/* .checkbox{
-    height: 20px;
-    width: 20px;
-}
 
-.completed {
-    margin-left: 30px;
-    text-decoration: line-through; 
-    opacity: 0.5; 
-  }
-
-li div{
-    margin-left: 30px;
-}
-li{
-    padding: 16px;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    list-style-type: none;
-    display: flex;
-}
-.content-li{
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-}
-
-.contain-but{
-    margin-left: 100px;
-} */
 .content-li {
     display: flex;
     align-items: center;
@@ -43,15 +14,31 @@ li{
     
 }
 
-.contain-but {
+.contain-but-edit {
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 5px;
-    padding: 5px 10px;
+    padding: 10px 10px;
     margin-left: 5px;
     cursor: pointer;
-   
+}
+
+.contain-but-edit:hover{
+    opacity: 0.7;
+}
+.contain-but-delete:hover{
+    opacity: 0.7;
+}
+
+.contain-but-delete {
+    background-color: #f02e52;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 10px;
+    margin-left: 5px;
+    cursor: pointer;
 }
 
 .contain-but:hover {
@@ -60,4 +47,130 @@ li{
 
 ul li div{
     flex: 7;
+    
+}
+
+.view-modal{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgb(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+.modal{
+    background-color: white;
+    min-height: 150px;
+    width: 450px;
+    position: relative;
+    position: absolute;
+    padding-top: 10px;
+    border-radius: 3px;
+}
+
+.modal-title{
+    margin-bottom: 12px;
+}
+
+.modal-title p{
+    font-weight: bold;
+    font-size: 22px;
+    padding-left: 20px;
+    
+}
+
+.modal-x{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: white;
+    padding: 8px 16px 8px 16px;
+    cursor: pointer;
+    border: none;
+    border-top-right-radius: 3px;
+}
+
+.modal-body{
+    padding: 15px 15px 15px 0px;
+    padding-left: 20px;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-left: none;
+}
+
+.modal-x:hover{
+    background-color: rgb(237, 77, 77);
+    color: #fff;
+}
+
+.modal-but {
+    padding-left: 20px;
+    text-align: right;
+    margin-top: 18px;
+    margin-right: 10px;
+    margin: 18px 10px 10px 0;
+}
+
+.modal-but-yes{
+    padding: 8px;
+    background-color: gray;
+    color: #fff;
+    margin-right: 12px;
+    border: 1px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.modal-but-yes:hover{
+    opacity: 0.6;
+}
+
+.modal-but-no{
+    padding: 8px;
+    background-color: blue;
+    border: 1px;
+    border-radius: 3px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.modal-but-no:hover{
+    opacity: 0.6;
+}
+
+
+.model-message {
+    position: fixed;
+    top: 20px;
+    right: 10px;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    animation: show 1s none;
+    max-width: 300px; 
+    opacity: 0; 
+    transform: translateX(100%);
+}
+
+.model-message-text {
+    margin-right: 10px;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }

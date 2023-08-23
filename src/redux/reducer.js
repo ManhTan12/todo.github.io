@@ -12,12 +12,13 @@ export const ACTION_TYPE={
     SET_TODO: 'SET_TODO',
     DELETE_TODO: 'DELETE_TODO',
     EDIT_TODO: 'EDIT_TODO',
-
+    FETCH_TODOS_SUCCESS: 'FETCH_TODOS_SUCCESS',
+    FETCH_TODOS_API:'FETCH_TODOS_API',
 }
 
 const todoReducer =(state = todoLists, action) => {
     switch(action.type){
-        case 'ADD_TODO' :           
+        case 'ADD_TODO' :    
             const arr = state;
             return [action.payload,...arr]
         case 'SET_TODO': {
@@ -47,8 +48,9 @@ const todoReducer =(state = todoLists, action) => {
                 content: action.payload.content,
             };
             return newList;
-        }
-        
+        };
+        case 'FETCH_TODOS_SUCCESS':
+            return action.payload
         default:
             return state;
     }

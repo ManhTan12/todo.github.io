@@ -4,13 +4,11 @@ import ViewContainer from "../view/ViewContainer";
 
 
 const Content = ({
- 
   handleCheck,
   onEditList,
   currentTasks,
   deleteList,
   editLists
-  
 }) => {
   const handleEdit = (value) => {
     onEditList(value);

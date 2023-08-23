@@ -7,7 +7,6 @@ const View = ({ handleCheck, handleDelete, value, onEdit }) => {
   };
 
   
-
   return (
     <li key={value.id} >
       <div className="content-li">

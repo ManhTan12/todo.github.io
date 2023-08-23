@@ -1,0 +1,10 @@
+POST https://64df70c271c3335b25829fd0.mockapi.io/api/v1/tasks
+Content-Type: application/json
+
+{
+    "name": "check",
+    "isComplete": false
+}
+
+###
+GET https://64df70c271c3335b25829fd0.mockapi.io/api/v1/tasks

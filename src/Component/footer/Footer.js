@@ -1,10 +1,11 @@
 import './footer.css'
 
 
-const Footer = ({handleChange,listUser,typelist}) =>{
+const Footer = ({handleChange,typelist,todoLists}) =>{
+    debugger;
     return (
         <div className='footer'>
-            <p>{listUser.length} Item left</p>
+            <p>{todoLists.length} Item left</p>
             <div className='but3'>
                 <button className={`but1 ${typelist === 'all' ? 'active' : ''} `} onClick={() =>handleChange('all')}>All </button>
                 <button className={`but1 ${typelist === 'active' ? 'active' : ''} `} onClick={() =>handleChange('active')}>Active </button>
