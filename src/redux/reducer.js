@@ -20,7 +20,7 @@ const todoReducer =(state = todoLists, action) => {
     switch(action.type){
         case 'ADD_TODO' :    
             const arr = state;
-            return [action.payload,...arr]
+            return [...arr,action.payload]
         case 'SET_TODO': {
             
             const newList = [...state];

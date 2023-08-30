@@ -6,16 +6,17 @@ import { Them } from "./Theme/Them";
 import { Provider } from 'react-redux'
 import store from './redux/store';
 import AppContainer from './AppContainer';
-//import TodoList from './Component/TodoList';
-// import { createStore } from 'redux'
-// import rootReducer from './reducers'
+import { ModalProvider } from './Theme/ModalContext';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <Them>
-      <AppContainer />
-    </Them>
+    <ModalProvider>
+      <Them>
+        <AppContainer />
+      </Them>
+    </ModalProvider>
   </Provider>
     
   

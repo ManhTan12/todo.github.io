@@ -1,7 +1,5 @@
 //import logo from './logo.svg';
 import "./App.css";
-import axios from "axios";
-import { fetchTodos } from "./redux/api";
 import HeaderContainer from "./Component/header/HeaderContainer";
 import ContentContainer from "./Component/content/ContentContainer";
 import FooterContainer from "./Component/footer/FooterContainer";

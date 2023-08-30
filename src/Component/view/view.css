@@ -60,7 +60,7 @@ ul li div{
     display: flex;
     justify-content: center;
     align-items: center;
-   
+    z-index: 1;
 }
 .modal{
     background-color: white;
@@ -154,11 +154,19 @@ ul li div{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    animation: show 1s none;
     max-width: 300px; 
-    opacity: 0; 
-    transform: translateX(100%);
+    transition: transform 1s;
 }
+
+.hiddenMessage{
+    transform: translateX(300px);
+}
+
+.showMessage{
+    transform: translateX(0px);
+}
+
+
 
 .model-message-text {
     margin-right: 10px;
@@ -166,11 +174,11 @@ ul li div{
 
 @keyframes show {
     from {
-        opacity: 0;
+        
         transform: translateX(100%);
     }
     to {
-        opacity: 1;
+        
         transform: translateX(0);
     }
 }
