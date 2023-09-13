@@ -1,26 +1,22 @@
 // // import { combineReducers, createStore } from "redux";
 // import rootReducer from "./reducer";
 
-// // const reducer = combineReducers({
-// //   rootReducer
-// // })
 
-// // const store = createStore(reducer)
-// // export default store
-
-// import { createStore } from "redux";
-// // import todoReducer from "./reducers";
-
-// const store = createStore(rootReducer);
-
-// export default store;
-
-
-
-
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import todoReducer from "./reducer";
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from "../sagas/rootSaga"; 
 
-const store = createStore(todoReducer);
+
+// Tao saga
+const sagaMiddleware = createSagaMiddleware();
+// Tao Redux store va ap dung Middleware
+const store = createStore(
+    todoReducer, 
+    applyMiddleware(sagaMiddleware)
+  );
+
+//Run saga
+sagaMiddleware.run(rootSaga)
 
 export default store;

@@ -155,7 +155,7 @@ ul li div{
     align-items: center;
     justify-content: space-between;
     max-width: 300px; 
-    transition: transform 1s;
+    transition: right 1s ease-in-out;
 }
 
 .hiddenMessage{

@@ -1,13 +1,17 @@
+import React from "react";
 import axiosClient from "../../api/axiosClient";
-import { useEffect, useState } from "react";
+//import { useEffect, useState } from "react";
 import "./view.css";
-import { useModal } from "../../Theme/ModalContext";
-import { ModalProvider } from "../../Theme/ModalContext";
-import Modal from "../../Theme/Modal";
-import DeleteMessage from "../../Theme/DeleteMessage";
+import {ModalContext} from "../../Theme/ModalContext"
+
 
 const ViewFake = ({ value, deleteTodo, setTodo, onEdit, editLists }) => {
-  const { openModal, closeModal } = useModal();
+
+  const {
+    openModal,
+    closeModal,
+    deleteSuccess
+  } = React.useContext(ModalContext);
 
   const handleEdit = (value) => {
     console.log("values", value);
@@ -15,7 +19,6 @@ const ViewFake = ({ value, deleteTodo, setTodo, onEdit, editLists }) => {
   };
 
   const handleCheck = async (id) => {
-    debugger;
     axiosClient
       .put(`/${id}`, { isComplete: !value.isComplete })
       .then((res) => {
@@ -24,51 +27,30 @@ const ViewFake = ({ value, deleteTodo, setTodo, onEdit, editLists }) => {
       .catch((error) => {
         console.log(error);
       });
-    debugger;
   };
 
   const handleConfirYes = async (id) => {
     try {
-      await axiosClient.delete(`/${id}`);
+      closeModal();
       deleteTodo(id);
+      await axiosClient.delete(`/${id}`);
+      deleteSuccess();
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleConfirNo = () => {
-    closeModal();
-  };
+  // const handleConfirNo = () => {
+  //   closeModal();
+  // };
 
-  const handleDelete = () => {
-    openModal(
-      <div className="view-modal">
-        <div className="modal">
-          <div className="modal-title">
-            <p>Xoá người dùng này?</p>
-            <button className="modal-x" onClick={() => closeModal()}>
-              x
-            </button>
-          </div>
-          <p className="modal-body">Bạn có chắc chắn muốn xoá?</p>
-          <div className="modal-but">
-            <button
-              className="modal-but-yes"
-              onClick={() => handleConfirYes(value.id)}
-            >
-              OK
-            </button>
-            <button className="modal-but-no" onClick={() => handleConfirNo()}>
-              Cancel
-            </button>
-          </div>
-        </div>
-      </div>
-    );
+  const handleDelete = (id) => {
+    const callback = () => handleConfirYes(id)
+    openModal(callback);
   };
 
   return (
-    <ModalProvider>
+    <React.Fragment>
       <li>
         <div className="content-li">
           <input
@@ -84,16 +66,14 @@ const ViewFake = ({ value, deleteTodo, setTodo, onEdit, editLists }) => {
             className="contain-but-edit"
             onClick={() => handleEdit(value)}
           >
-            Sửa
+            Sửa 
           </button>
-          <button className="contain-but-delete" onClick={() => handleDelete()}>
+          <button className="contain-but-delete" onClick={() => handleDelete(value.id)}>
             Xoá
           </button>
         </div>
       </li>
-      <Modal /> 
-      <DeleteMessage value={value} /> 
-    </ModalProvider>
+    </React.Fragment>
   );
 };
 export default ViewFake;

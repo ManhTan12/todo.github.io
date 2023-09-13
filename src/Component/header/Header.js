@@ -2,18 +2,12 @@ import "./header.css";
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
 import axiosClient from "../../api/axiosClient";
+import ProductApi from "../../api/productAPI";
 const Header = ({ headerRef, addTodo, editTodo }) => {
   //redux
   const [value, setValue] = useState("");
   const [select, setSelect] = useState("");
-  // headerRef.current = (value) => {
-    
-  // };
-  // useEffect(() => {
-  //   setSelect(headerRef.current.value);
-  //   setValue(headerRef.current.value);
-  // }, [headerRef.current.value])
-
+  
   const handleSave = () => {
     if (select) {
       // edit
@@ -22,9 +16,18 @@ const Header = ({ headerRef, addTodo, editTodo }) => {
           ...select,
           content: value,
         };
-        editTodo(newTodo);
-        setValue("");
-        setSelect("");
+        // editTodo(newTodo);
+        // setValue("");
+        // setSelect("");
+        ProductApi.update()
+        .then(res =>{
+          editTodo(newTodo);
+          setValue("");
+          setSelect("");
+        })
+        .catch(error=>{
+          console.log('Error', error);
+        })
       }
     } else {
       // add
@@ -43,7 +46,7 @@ const Header = ({ headerRef, addTodo, editTodo }) => {
           addTodo(task)
         })
         .catch(error =>{
-          console.log('Error',error)
+          console.log('Error',error);
         })
         console.log('newTodo', newTodo);
         setValue("");
@@ -57,7 +60,6 @@ const Header = ({ headerRef, addTodo, editTodo }) => {
       handleSave();
     }
   };
-  console.log('value value value', value);
 
   return (
     <div className="wrapper-header">

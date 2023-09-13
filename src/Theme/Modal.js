@@ -1,17 +1,20 @@
-import { useModal } from "./ModalContext";
+// import { useModal } from "./ModalContext";
 
 const Modal = () => {
-  const { showModal, closeModal } = useModal();
+  // const { showModal, closeModal } = useModal();
 
-  if (!showModal) {
-    return null;
-  }
+  // if (!showModal) {
+  //   return null;
+  // }
 
   return (
     <div className="modal">
       <div className="modal-title">
-        <p>Xoá người dùng này?</p>
-        <button className="modal-x" onClick={() => closeModal()}>
+        <p>Xoá công việc này?</p>
+        <button 
+        className="modal-x" 
+        // onClick={() => closeModal()}
+        >
           x
         </button>
       </div>

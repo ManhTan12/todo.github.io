@@ -50,6 +50,7 @@ const todoReducer =(state = todoLists, action) => {
             return newList;
         };
         case 'FETCH_TODOS_SUCCESS':
+            debugger;
             return action.payload
         default:
             return state;

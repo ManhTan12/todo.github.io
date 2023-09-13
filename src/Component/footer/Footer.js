@@ -2,7 +2,6 @@ import './footer.css'
 
 
 const Footer = ({handleChange,typelist,todoLists}) =>{
-    debugger;
     return (
         <div className='footer'>
             <p>{todoLists.length} Item left</p>
