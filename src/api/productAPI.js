@@ -5,9 +5,6 @@ const ProductApi ={
         const url = '';
         return axiosClient.get(url)
     },
-    get(id){
-
-    },
     add(data){
         const url = '';
         return axiosClient.post(url,data)
@@ -16,10 +13,10 @@ const ProductApi ={
         const url = `/${data.id}`;
         return axiosClient.put(url, { isComplete: !data.isComplete })
     },
-    delete(id){
+    remove(id){
         debugger;
         const url = `/${id}`;
-        return axiosClient.delete(url)
+        return axiosClient.delete(url);
     }
 };
 

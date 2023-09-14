@@ -1,13 +1,13 @@
 import { all } from 'redux-saga/effects';
-import { watchAddTasks, watchSetTasks, watchDeletedTasks, watchEditTasks, watchGetTasks } from './watcherSaga';
+import { watchGetTasks,watchAddTasks,watchDeletedTasks } from './watcherSaga';
 
 function* rootSaga() {
     yield all([
-        watchGetTasks,
-        watchAddTasks,
-        watchDeletedTasks,
-        watchSetTasks,
-        watchEditTasks
+        watchGetTasks(),
+        watchAddTasks(),
+        watchDeletedTasks(),
+        // watchSetTasks,
+        // watchEditTasks
     ]);
 }
 

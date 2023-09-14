@@ -1,12 +1,11 @@
 import { takeLatest,put, call } from 'redux-saga/effects';
 import { ACTION_TYPE } from '../redux/reducer';
-import axiosClient from '../api/axiosClient';
 import ProductApi from '../api/productAPI';
+import axiosClient from '../api/axiosClient';
+
 function* getTaskSaga(){
-    debugger;
     try{
-        const res = yield call(axiosClient.get,'')
-        debugger;
+        const res = yield call(axiosClient.get,'')   
         yield put({type: ACTION_TYPE.FETCH_TODOS_SUCCESS, payload:res})
     }catch(error){
         yield put ({type: ACTION_TYPE.FETCH_TODOS_SUCCESS, payload: error})
@@ -15,9 +14,9 @@ function* getTaskSaga(){
 
 
 function* addTaskSaga(action){
-    
+    debugger
     try{
-        const data= yield call(axiosClient.post,'', action.payload)
+        const data= yield call(ProductApi.add(), action.payload)
         yield put({type: ACTION_TYPE.ADD_TODO, payload: data})
     }catch (error){
         yield put({type: ACTION_TYPE.ADD_TODO, payload: error})
@@ -25,8 +24,9 @@ function* addTaskSaga(action){
 }
 
 function* deletedTaskSaga(action){
+    debugger;
     try{
-        const data= yield call(axiosClient.delete,`/${action.id}`, action.payload)
+        const data= yield call(() => axiosClient.delete(`/${action.id}`, action.payload));
         debugger;
         yield  put({type: ACTION_TYPE.DELETE_TODO, payload: data})
     }catch (error){

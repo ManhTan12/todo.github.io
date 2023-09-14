@@ -1,9 +1,9 @@
 import "./header.css";
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
-import axiosClient from "../../api/axiosClient";
+
 import ProductApi from "../../api/productAPI";
-const Header = ({ headerRef, addTodo, editTodo }) => {
+const Header = ({ headerRef, addTodo, editTodo,addTask }) => {
   //redux
   const [value, setValue] = useState("");
   const [select, setSelect] = useState("");
@@ -30,25 +30,14 @@ const Header = ({ headerRef, addTodo, editTodo }) => {
         })
       }
     } else {
+      debugger;
       // add
       if(value.trim() !== ''){
         const newTodo = {
           name: value,
           isComplete: false,
         };
-
-        axiosClient.post('',newTodo)
-        .then(res =>{
-          let task = {
-            ...newTodo,
-            id: res.id
-          }
-          addTodo(task)
-        })
-        .catch(error =>{
-          console.log('Error',error);
-        })
-        console.log('newTodo', newTodo);
+        addTask(newTodo);
         setValue("");
         setSelect("");
       }  

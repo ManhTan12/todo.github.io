@@ -1,11 +1,10 @@
 import React from "react";
-import axiosClient from "../../api/axiosClient";
-//import { useEffect, useState } from "react";
+import ProductApi from "../../api/productAPI";
 import "./view.css";
 import {ModalContext} from "../../Theme/ModalContext"
 
 
-const ViewFake = ({ value, deleteTodo, setTodo, onEdit, editLists }) => {
+const ViewFake = ({ value, deleteTodo, setTodo, onEdit, editLists,deleteTasks }) => {
 
   const {
     openModal,
@@ -19,8 +18,7 @@ const ViewFake = ({ value, deleteTodo, setTodo, onEdit, editLists }) => {
   };
 
   const handleCheck = async (id) => {
-    axiosClient
-      .put(`/${id}`, { isComplete: !value.isComplete })
+      ProductApi.update()
       .then((res) => {
         setTodo(id);
       })
@@ -30,14 +28,19 @@ const ViewFake = ({ value, deleteTodo, setTodo, onEdit, editLists }) => {
   };
 
   const handleConfirYes = async (id) => {
-    try {
-      closeModal();
-      deleteTodo(id);
-      await axiosClient.delete(`/${id}`);
-      deleteSuccess();
-    } catch (error) {
-      console.log(error);
-    }
+    debugger
+    // try {
+    //   closeModal();
+    //   deleteTodo(id);
+    //   //await axiosClient.delete(`/${id}`);
+    //   deleteTasks(id);
+    //   deleteSuccess();
+    // } catch (error) {
+    //   console.log(error);
+    // }
+    closeModal();
+    deleteTasks(id);
+    deleteSuccess();
   };
 
   // const handleConfirNo = () => {
@@ -45,6 +48,7 @@ const ViewFake = ({ value, deleteTodo, setTodo, onEdit, editLists }) => {
   // };
 
   const handleDelete = (id) => {
+    debugger
     const callback = () => handleConfirYes(id)
     openModal(callback);
   };

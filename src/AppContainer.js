@@ -1,8 +1,7 @@
 import {  connect } from "react-redux"
-import axios from "axios";
 import { ACTION_TYPE } from "./redux/reducer";
 import App from "./App"
-import { fetchTodos } from "./redux/api";
+import { getTasks } from "./sagas/typeAction";
 
 function mapStateToProps(state, ownProps){
     return{
@@ -13,6 +12,7 @@ function mapStateToProps(state, ownProps){
 function mapDispatchToProps(dispatch) {
     return {
       fetchTodos: (todos) => dispatch({ type: ACTION_TYPE.FETCH_TODOS_SUCCESS, payload: todos }),
+      getTasks: () => dispatch(getTasks()),
     };
   }
 

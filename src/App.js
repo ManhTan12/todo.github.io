@@ -6,12 +6,11 @@ import FooterContainer from "./Component/footer/FooterContainer";
 import PageContainer from "./Component/Page/PageContainer";
 import { ThemeContext } from "./Theme/Them";
 import { useState, useRef, useContext,useEffect } from "react";
-import { getTaskSaga } from "./sagas/saga";
 import ProductApi from "./api/productAPI";
 
 
 
-function App({ todoLists,fetchTodos }) {
+function App({ todoLists, getTasks }) {
   const [typelist, setTypeList] = useState('all');
   const headerRef = useRef(null);
 
@@ -49,25 +48,8 @@ function App({ todoLists,fetchTodos }) {
   };
 
   useEffect(() => {
-    // const fetchProduct =async () =>{
-    //   const productList =await ProductApi.getAll();
-    //   fetchTodos(productList)
-    // }
-    // fetchProduct();
-    // Tạo một hàm để chạy saga
-    const runSaga = async () => {
-      try {
-        const result = await getTaskSaga();
-        // Giả định rằng getTaskSaga gửi một action thành công với dữ liệu
-        if (result && result.payload) {
-            fetchTodos(result.payload); // Gửi action của bạn với dữ liệu
-        }
-      } catch (error) {
-        // Xử lý lỗi nếu cần
-      }
-    };
-
-    runSaga(); // Chạy saga
+    debugger;
+    getTasks();
   }, []);
 
 

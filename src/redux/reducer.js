@@ -14,11 +14,15 @@ export const ACTION_TYPE={
     EDIT_TODO: 'EDIT_TODO',
     FETCH_TODOS_SUCCESS: 'FETCH_TODOS_SUCCESS',
     FETCH_TODOS_API:'FETCH_TODOS_API',
+    GETTASKS: 'GETTASKS',
+    ADD_TODO_SAGA:'ADD_TODO_SAGA',
+    DELETE_TODO_SAGA:'DELETE_TODO_SAGA',
 }
 
 const todoReducer =(state = todoLists, action) => {
     switch(action.type){
-        case 'ADD_TODO' :    
+        case 'ADD_TODO' :  
+        debugger;
             const arr = state;
             return [...arr,action.payload]
         case 'SET_TODO': {
@@ -38,8 +42,10 @@ const todoReducer =(state = todoLists, action) => {
             
         }
         case 'DELETE_TODO':
+            debugger;
             const newList = [...state];
             return newList.filter((todo) => todo.id !== action.payload);
+            
         case 'EDIT_TODO':{
             const newList = [...state];
             const index = newList.findIndex((value) => value.id === action.payload.id);
